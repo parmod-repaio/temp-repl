@@ -1,0 +1,83 @@
+Build a Node.js web application with the following features:
+
+Tech Stack:
+Backend: Node.js + Express.js
+
+Database: PostgreSQL (Sequelize ORM)
+
+Authentication: JWT-based authentication
+
+Frontend: React (optional, if full-stack is needed)
+
+User Features:
+1. Authentication & Profile Management:
+User registration and login (JWT-based).
+
+Profile update (name, email, password).
+
+2. Dashboard:
+Displays statistics (e.g., total campaigns, total customer lists, total customers).
+
+3. Customer List Management (CRUD + CSV Upload) [Mandatory Before Campaigns]:
+A Customer List is a collection of customers.
+
+Users can Create, Read, Update, and Delete Customer Lists.
+
+Each list must have a unique name.
+
+CSV Upload:
+
+Users can bulk upload customers via a CSV file (predefined sample format).
+
+Customers from the CSV are linked to the selected Customer List.
+
+4. Customer Management (CRUD) [Customers Are Always in a Customer List]:
+Users can Create, Read, Update, and Delete individual customers.
+
+Each customer has:
+
+UUID as Primary Key (instead of SERIAL).
+
+Name, Phone Number, Email, and Status.
+
+Must belong to a Customer List (one-to-many relationship).
+
+Customers are added manually here or via CSV in Customer List Management.
+
+5. Campaign Management (CRUD) [Only After Adding a Customer List]:
+Users can only create a Campaign if at least one Customer List exists.
+
+Create, Read, Update, and Delete campaigns.
+
+Each campaign must be linked to one or more Customer Lists.
+
+Campaigns include:
+
+UUID as Primary Key (instead of SERIAL).
+
+Name, Description, and Status (active/inactive).
+
+6. Customer & Campaign Mapping (Auto-Linking from Customer List):
+When a campaign is created, all customers from the selected Customer List(s) are automatically linked.
+
+Users can view all customers assigned to a campaign.
+
+Database Implementation Notes:
+✅ Use UUID as Primary Keys instead of SERIAL for PostgreSQL tables.
+✅ Use Sequelize UUIDV4 when defining models.
+
+Additional Requirements:
+CSV Upload is only allowed in Customer List Management.
+
+API endpoints for all operations.
+
+Proper error handling and validation.
+
+Middleware for authentication & authorization.
+
+Use Multer for CSV file handling.
+
+Why UUID Instead of SERIAL?
+✅ Better scalability across distributed systems.
+✅ Prevents sequential ID guessing.
+✅ Works well in multi-server environments.
